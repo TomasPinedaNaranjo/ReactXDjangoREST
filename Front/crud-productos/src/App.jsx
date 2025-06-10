@@ -8,10 +8,16 @@ function App() {
     <BrowserRouter>
     <div >
       <Header></Header>
+
+
       <Routes>
-        <Route path="/" element={<ProductList />} />
+      
+        <Route path='/' element={<ProductList />} />
+        
         <Route path="/nuevo-producto" element={<ProductForm />} />
+
         <Route path="/editar-productos/:id" element={<ProductForm />} />
+      
       </Routes>
     </div>
     </BrowserRouter>
