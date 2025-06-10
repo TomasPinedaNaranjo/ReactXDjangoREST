@@ -1,4 +1,3 @@
-# .github/workflows/django-lint.yml
 name: Django Lint
 
 on: [push, pull_request]
@@ -9,14 +8,18 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-    
-    - name: Install flake8
-      run: pip install flake8
-    
+
+    - name: Install flake8 and black
+      run: pip install flake8 black
+
+    # This will check formatting and fail if code is not formatted
+    - name: Check code formatting with black
+      run: black --check .
+
     - name: Run linter
       run: flake8 ./Back --exclude=venv,*/site-packages,*/_vendor
