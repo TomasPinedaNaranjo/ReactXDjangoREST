@@ -19,4 +19,4 @@ jobs:
       run: pip install flake8
     
     - name: Run linter
-      run: flake8 .
+      run: flake8 ./Back --exclude=venv,*/site-packages,*/_vendor
