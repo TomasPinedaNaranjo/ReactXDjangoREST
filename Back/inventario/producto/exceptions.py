@@ -12,6 +12,9 @@ class ProductoNombreInvalidoError(ProductoError):
 
 
 class ProductoPrecioInvalidoError(ProductoError):
+
+
+    
     """Raised when producto price is invalid"""
     default_detail = "El precio del producto debe ser mayor a 0"
     default_code = 'producto_precio_invalido'
