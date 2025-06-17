@@ -1,35 +1,41 @@
-name: Python Lint and Format
+name: django-lint
 
 on:
   push:
-    paths:
-      - 'Back/inventario/**'
+    branches: [ "main", "master" ]
   pull_request:
-    paths:
-      - 'Back/inventario/**'
+    branches: [ "main", "master" ]
 
 jobs:
-  lint:
+  django-lint:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # 1. Clonar el repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
+      # 2. Preparar Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'    # Ajusta la versión si tu proyecto necesita otra
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8 autopep8
+      # 3. Instalar dependencias mínimas para linting
+      - name: Install linter
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff           # o flake8/black/isort si prefieres
 
-    - name: Auto-fix code style issues
-      run: |
-        autopep8 Back/inventario --in-place --recursive --max-line-length 79
+      # 4. Ejecutar el linter en la carpeta Back
+      - name: Run linter
+        run: |
+          ruff check Back            # usa 'ruff check --fix Back' si quieres autocorrección
 
-    - name: Run flake8
-      run: |
-        flake8 Back/inventario
+      # 5. (Opcional) Commit automático si el linter corrige archivos
+      - name: Commit and push changes if Ruff fixed files
+        if: ${{ github.event_name == 'pull_request' }}  # opcional: limita el auto‑commit a PRs
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Django Linting (Ruff)
+          skip_fetch: true
