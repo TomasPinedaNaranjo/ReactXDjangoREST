@@ -15,8 +15,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Checkout TestWorkflow branch
-        run: git checkout TestWorkflow
+      - name: Checkout code
+        run: git checkout main
 
       # 2. Preparar Python
       - name: Setup Python
