@@ -15,6 +15,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Checkout TestWorkflow branch
+        run: git checkout TestWorkflow
+
       # 2. Preparar Python
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -34,8 +37,9 @@ jobs:
 
       # 5. (Opcional) Commit automático si el linter corrige archivos
       - name: Commit and push changes if Ruff fixed files
-        if: ${{ github.event_name == 'pull_request' }}  # opcional: limita el auto‑commit a PRs
+        if: ${{ github.event_name == 'pull_request' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Django Linting (Ruff)
+          branch: TestWorkflow
           skip_fetch: true
