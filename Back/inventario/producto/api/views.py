@@ -9,5 +9,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
     API endpoint that allows productos to be viewed or edited.
     """
     queryset = Producto.objects.all()
+
+    
     serializer_class = ProductoSerializer
     
