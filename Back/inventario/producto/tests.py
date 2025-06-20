@@ -2,6 +2,8 @@ from django.test import TestCase
 from producto.factories import ProductoFactory
 from producto.exceptions import (
     ProductoNombreInvalidoError,
+
+    
     ProductoPrecioInvalidoError,
     ProductoCantidadInvalidaError
 )
@@ -19,14 +21,17 @@ class ProductoTests(TestCase):
             producto = ProductoFactory.build(nombre='')
             producto.save()
             
-    def test_producto_precio_invalido(self):
+    def test_producto_precio_invalido(self):  
+
         """Test creating a producto with invalid price"""
         with self.assertRaises(ProductoPrecioInvalidoError):
             producto = ProductoFactory.build(precio=-10)
             producto.save()
             
     def test_producto_cantidad_invalida(self):
-        """Test creating a producto with invalid quantity"""
+        #Test creating a producto with invalid quantity
+
+
         with self.assertRaises(ProductoCantidadInvalidaError):
             producto = ProductoFactory.build(cantidad=-1)
             producto.save()
