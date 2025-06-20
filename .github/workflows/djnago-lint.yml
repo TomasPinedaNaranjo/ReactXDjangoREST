@@ -15,9 +15,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Checkout code
-        run: git checkout main
-
       # 2. Preparar Python
       - name: Setup Python
         uses: actions/setup-python@v5
