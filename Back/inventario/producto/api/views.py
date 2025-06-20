@@ -1,4 +1,4 @@
-from rest_framework import serializers, viewsets, permissions
+from rest_framework import viewsets
 from producto.models import Producto
 from producto.api.serializers import ProductoSerializer
 

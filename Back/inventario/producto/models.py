@@ -1,6 +1,5 @@
 from django.db import models
 from .exceptions import ProductoNombreInvalidoError, ProductoPrecioInvalidoError, ProductoCantidadInvalidaError
-from django.core.exceptions import ValidationError
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
