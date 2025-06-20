@@ -38,5 +38,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Django Linting (Ruff)
-          branch: TestWorkflow
+          branch: master
           skip_fetch: true
